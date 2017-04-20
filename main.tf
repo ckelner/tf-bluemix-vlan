@@ -6,7 +6,7 @@ provider "ibmcloud" {
 
 # Create a public vlan
 resource "ibmcloud_infra_vlan" "test_vlan_public" {
-  name            = "public-kelner-test"
+  name            = "public-${var.name_suffix}"
   datacenter      = "${var.datacenter}"
   type            = "PUBLIC"
   subnet_size     = 8
@@ -14,7 +14,7 @@ resource "ibmcloud_infra_vlan" "test_vlan_public" {
 
 # Create a private vlan
 resource "ibmcloud_infra_vlan" "test_vlan_private" {
-  name        = "private-kelner-test"
+  name        = "private-${var.name_suffix}"
   datacenter  = "${var.datacenter}"
   type        = "PRIVATE"
   subnet_size = 8
@@ -38,4 +38,8 @@ variable slaccountnum {
 # The datacenter to deploy to
 variable datacenter {
   default = "dal06"
+}
+# Name suffic
+variable name_suffix {
+  default = "kelner-test"
 }
